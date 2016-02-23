@@ -11,7 +11,8 @@
 
     using MvcTemplate.Data.Models;
     using MvcTemplate.Web.ViewModels.Account;
-
+    using System.Net;
+    using Newtonsoft.Json.Linq;
     [Authorize]
     public class AccountController : BaseController
     {
@@ -168,7 +169,19 @@
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (this.ModelState.IsValid)
+            var capchaResponse = this.Request["g-recaptcha-response"];
+            const string secret = "6LcbERkTAAAAACuGEGPexnRpC8cyzZj44yE1DXw6";
+
+            var client = new WebClient();
+            var reply =
+                client.DownloadString(
+                    string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, capchaResponse));
+
+            var obj = JObject.Parse(reply);
+
+            var isCapchaValid = (bool)obj.SelectToken("success");
+
+            if (this.ModelState.IsValid && isCapchaValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await this.UserManager.CreateAsync(user, model.Password);

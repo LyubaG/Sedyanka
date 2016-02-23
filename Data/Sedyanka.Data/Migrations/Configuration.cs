@@ -8,7 +8,7 @@
 
     using MvcTemplate.Common;
     using MvcTemplate.Data.Models;
-
+    using System;
     public sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
@@ -41,7 +41,39 @@
                 userManager.AddToRole(user.Id, GlobalConstants.AdministratorRoleName);
             }
 
+            //Random rand = new Random();
 
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Joke laptop = new Joke();
+            //    Joke.
+            //    laptop.HardDiskSize = rand.Next(10, 1000);
+            //    laptop.ImageUrl = "http://laptop.bg/system/images/26207/thumb/toshiba_satellite_l8501v8.jpg";
+            //    laptop.Manufacturer = sampleManufacturer;
+            //    laptop.Model = "ideapad";
+            //    laptop.MonitorSize = 15.4;
+            //    laptop.Price = rand.Next(600, 3000);
+            //    laptop.RamMemorySize = rand.Next(1, 16);
+            //    laptop.Weight = 3;
+
+            //    var votesCount = rand.Next(0, 10);
+            //    for (int j = 0; j < votesCount; j++)
+            //    {
+            //        laptop.Votes.Add(new Vote { Laptop = laptop, VotedBy = user });
+            //    }
+
+            //    var commentsCount = rand.Next(0, 10);
+            //    for (int j = 0; j < commentsCount; j++)
+            //    {
+            //        laptop.Comments.Add(new Comment { Content = "Mnou qk laptop brat.", Author = user });
+            //    }
+
+            //    context.Laptops.Add(laptop);
+            //}
+
+            //context.SaveChanges();
+
+            //base.Seed(context);
         }
     }
 }
