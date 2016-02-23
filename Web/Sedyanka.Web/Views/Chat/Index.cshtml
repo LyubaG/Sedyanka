@@ -1,0 +1,33 @@
+﻿@model MvcTemplate.Web.ViewModels.Home.IndexViewModel
+@{
+    ViewBag.Title = "Chat";
+}
+<script src="~/Scripts/jquery-2.2.0.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.0.js"></script>
+<script src="~/signalr/hubs"></script>
+<div class="container">
+    <div class="row">
+        <div>
+            <h2 class="text-center">Sedyanka Live Chat</h2>
+            <h5 class="text-center text-muted">Share your thoughts with your peers</h5>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="text" id="send-message-text" placeholder="Your message goes here" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-info full-width" type="button" id="send-message-button">Send</button>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>
+<div class="container">
+    <div class="row" id="all-messages"></div>
+</div>
+<script>
+    window.currentUsernameName = '@User.Identity.Name';
+</script>
+<script src="~/Scripts/App/chat.js"></script>

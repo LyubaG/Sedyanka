@@ -20,6 +20,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Live Chat", "Index", "Chat", new { Area = "" }, null)</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
